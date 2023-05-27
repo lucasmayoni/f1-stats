@@ -1,31 +1,34 @@
-import { DataProvider } from '@refinedev/core';
-import { axiosInstance, generateSort, generateFilter } from './utils';
-import { AxiosInstance } from 'axios';
-import { stringify } from 'query-string';
+import { DataProvider } from "@refinedev/core";
+import { axiosInstance, generateSort, generateFilter } from "./utils";
+import { AxiosInstance } from "axios";
+import { stringify } from "query-string";
 
-type MethodTypes = 'get' | 'delete' | 'head' | 'options';
-type MethodTypesWithBody = 'post' | 'put' | 'patch';
+type MethodTypes = "get" | "delete" | "head" | "options";
+type MethodTypesWithBody = "post" | "put" | "patch";
 
-export const dataProvider = (apiUrl: string, httpClient: AxiosInstance = axiosInstance): Omit<Required<DataProvider>,
- 'createMany' | 'updateMany' | 'deleteMany'> => ({
-  getList: async({resource, meta}) =>{
+export const dataProvider = (
+  apiUrl: string,
+  httpClient: AxiosInstance = axiosInstance
+): Omit<
+  Required<DataProvider>,
+  "createMany" | "updateMany" | "deleteMany"
+> => ({
+  getList: async ({ resource, meta }) => {
     const url = `${apiUrl}/${resource}`;
     const { headers: headersFromMeta, method } = meta ?? {};
-    const { data } = await httpClient.get(url,
-           {
-             headers: headersFromMeta,
-           }
-          );
-    const total = data.results
-    return {  
+    const { data } = await httpClient.get(url, {
+      headers: headersFromMeta,
+    });
+    const total = data.results;
+    return {
       data,
-      total
-    }
+      total,
+    };
   },
 
   getMany: async ({ resource, ids, meta }) => {
     const { headers, method } = meta ?? {};
-    const requestMethod = (method as MethodTypes) ?? 'get';
+    const requestMethod = (method as MethodTypes) ?? "get";
 
     const { data } = await httpClient[requestMethod](
       `${apiUrl}/${resource}?${stringify({ id: ids })}`,
@@ -41,7 +44,7 @@ export const dataProvider = (apiUrl: string, httpClient: AxiosInstance = axiosIn
     const url = `${apiUrl}/${resource}`;
 
     const { headers, method } = meta ?? {};
-    const requestMethod = (method as MethodTypesWithBody) ?? 'post';
+    const requestMethod = (method as MethodTypesWithBody) ?? "post";
 
     const { data } = await httpClient[requestMethod](url, variables, {
       headers,
@@ -56,7 +59,7 @@ export const dataProvider = (apiUrl: string, httpClient: AxiosInstance = axiosIn
     const url = `${apiUrl}/${resource}/${id}`;
 
     const { headers, method } = meta ?? {};
-    const requestMethod = (method as MethodTypesWithBody) ?? 'patch';
+    const requestMethod = (method as MethodTypesWithBody) ?? "patch";
 
     const { data } = await httpClient[requestMethod](url, variables, {
       headers,
@@ -71,7 +74,7 @@ export const dataProvider = (apiUrl: string, httpClient: AxiosInstance = axiosIn
     const url = `${apiUrl}/${resource}/${id}`;
 
     const { headers, method } = meta ?? {};
-    const requestMethod = (method as MethodTypes) ?? 'get';
+    const requestMethod = (method as MethodTypes) ?? "get";
 
     const { data } = await httpClient[requestMethod](url, { headers });
 
@@ -84,7 +87,7 @@ export const dataProvider = (apiUrl: string, httpClient: AxiosInstance = axiosIn
     const url = `${apiUrl}/${resource}/${id}`;
 
     const { headers, method } = meta ?? {};
-    const requestMethod = (method as MethodTypesWithBody) ?? 'delete';
+    const requestMethod = (method as MethodTypesWithBody) ?? "delete";
 
     const { data } = await httpClient[requestMethod](url, {
       data: variables,
@@ -116,8 +119,8 @@ export const dataProvider = (apiUrl: string, httpClient: AxiosInstance = axiosIn
       if (generatedSort) {
         const { _sort, _order } = generatedSort;
         const sortQuery = {
-          _sort: _sort.join(','),
-          _order: _order.join(','),
+          _sort: _sort.join(","),
+          _order: _order.join(","),
         };
         requestUrl = `${requestUrl}&${stringify(sortQuery)}`;
       }
@@ -141,12 +144,12 @@ export const dataProvider = (apiUrl: string, httpClient: AxiosInstance = axiosIn
 
     let axiosResponse;
     switch (method) {
-      case 'put':
-      case 'post':
-      case 'patch':
+      case "put":
+      case "post":
+      case "patch":
         axiosResponse = await httpClient[method](url, payload);
         break;
-      case 'delete':
+      case "delete":
         axiosResponse = await httpClient.delete(url, {
           data: payload,
         });
