@@ -2,27 +2,7 @@ import { Button, Form, Select } from "antd";
 import { useState } from "react";
 import { useCustom } from "@refinedev/core";
 import Races from "./races";
-
-interface IRace {
-  response: {
-    id: number;
-    circuit: {
-      id: number;
-      name: string;
-      image: string;
-    };
-    laps: {
-      total: number;
-    };
-    fastest_lap: {
-      driver: {
-        id: number;
-      };
-      time: number;
-    };
-    status: string;
-  }[];
-}
+import { IRaceList } from "../models/interfaces";
 
 const generateUrl = (url: string) => {
   return `https://v1.formula-1.api-sports.io/${url}`;
@@ -35,7 +15,7 @@ export const FormSelector: React.FC = () => {
     setSeason(value.season);
   };
 
-  const { data, isLoading } = useCustom<IRace>({
+  const { data, isLoading } = useCustom<IRaceList>({
     url: generateUrl("races"),
     method: "get",
     config: {

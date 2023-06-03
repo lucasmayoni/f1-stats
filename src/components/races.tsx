@@ -2,25 +2,7 @@ import React from "react";
 import { Card, Row, Alert, Skeleton } from "antd";
 import Meta from "antd/lib/card/Meta";
 import { Link } from "react-router-dom";
-
-interface IRace {
-  id: number;
-  circuit: {
-    id: number;
-    name: string;
-    image: string;
-  };
-  laps: {
-    total: number;
-  };
-  fastest_lap: {
-    driver: {
-      id: number;
-    };
-    time: number;
-  };
-  status: string;
-}
+import { IRace } from "../models/interfaces";
 
 const Races = ({ races }: { races: IRace[] }) => {
   return (
