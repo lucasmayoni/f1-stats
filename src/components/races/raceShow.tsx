@@ -60,7 +60,7 @@ const RaceShow = () => {
             key:'grid',
             render: (_, item) => {
                 return (
-                <GridProgression grid={item.grid} position={item.position} />
+                    <GridProgression grid={item.grid} position={item.position} />
                 )
             }
         }

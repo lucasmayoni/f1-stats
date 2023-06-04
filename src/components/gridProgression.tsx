@@ -13,22 +13,24 @@ const GridProgression = ({grid, position}: {grid:number, position:number}) => {
              setIconColor({color: '#000000'});
              //setIconDraw(<MinusOutlined/>);
          } else if (grid > position){
-             setIconColor({color: '#ff0000'});
+             setIconColor({color: '#51ff00'});
              //setIconDraw(<ArrowDownOutlined/>);
          } else {
-             setIconColor({color: '#51ff00'});
+             setIconColor({color: '#ff0000'});
              //setIconDraw(<ArrowUpOutlined/>);
          }
         },[]
     ); // eslint-disable-line react-hooks/exhaustive-deps
     return (
-            <Statistic
-                title=""
-                precision={0}
-                value={Math.abs(grid-position)}
-                valueStyle={iconColor}
-                prefix={<MinusOutlined/>}
-            />
+            
+        <Statistic
+            title=""
+            precision={0}
+            value={Math.abs(grid-position)}
+            valueStyle={iconColor}
+            prefix={<MinusOutlined/>}
+        />
+
     )
 }
 export default GridProgression
