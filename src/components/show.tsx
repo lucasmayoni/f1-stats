@@ -3,20 +3,8 @@ import { IResourceComponentsProps, useCustom } from "@refinedev/core";
 import { useParams } from "react-router-dom";
 import { Card, Row, Col } from "antd";
 import { Link } from "react-router-dom";
+import { ICircuit } from "../models/interfaces";
 
-interface ICircuit {
-  response: {
-    id: number;
-    name: string;
-    image: string;
-    laps: number;
-    lap_record: {
-      time: number;
-      driver: string;
-      year: number;
-    };
-  }[];
-}
 
 const generateUrl = (url: string) => {
   return `https://v1.formula-1.api-sports.io/${url}`;

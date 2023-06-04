@@ -5,6 +5,8 @@ import { axiosInstance } from "./rest-data-provider/utils";
 import { Routes, Route, BrowserRouter, Link } from "react-router-dom";
 import { CircuitShow } from "./components/show";
 import { FormSelector } from "./components/formSelector";
+import RaceShow from "./components/races/raceShow";
+import GridProgression from "./components/gridProgression";
 
 const { Content, Sider } = Layout;
 
@@ -35,17 +37,22 @@ function App() {
                     list: "/circuits",
                     show: "/circuits/show/:id",
                   },
+                  {
+                    name:"races",
+                    show: "/races/show/:id"
+                  }
                 ]}
                 options={{
                   syncWithLocation: true,
                   warnWhenUnsavedChanges: true,
                 }}
               >
-                <FormSelector />
+                
                 <Routes>
-                  <Route path="/circuits">
-                    <Route path="show/:id" element={<CircuitShow />} />
+                  <Route path="/races">
+                    <Route path="show/:id" element={<RaceShow />} />
                   </Route>
+                  <Route path="/" element={<FormSelector />}/>
                 </Routes>
               </Refine>
             </Content>

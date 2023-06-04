@@ -1,7 +1,7 @@
 import { Button, Form, Select } from "antd";
 import { useState } from "react";
 import { useCustom } from "@refinedev/core";
-import Races from "./races";
+import Races from "./races/raceList";
 import { IRaceList } from "../models/interfaces";
 
 const generateUrl = (url: string) => {
