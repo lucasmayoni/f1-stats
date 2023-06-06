@@ -1,36 +1,34 @@
+import {
+  ArrowDownOutlined,
+  ArrowUpOutlined,
+  MinusOutlined,
+} from "@ant-design/icons";
+import { Statistic } from "antd";
 
-import { ArrowDownOutlined, ArrowUpOutlined, MinusOutlined } from '@ant-design/icons';
-import { Statistic } from 'antd';
-import React, { useEffect, useState } from 'react';
-
-const GridProgression = ({grid, position}: {grid:number, position:number}) => { 
-    
-    const [iconColor, setIconColor] = useState({});
-    const [iconDraw, setIconDraw] = useState({});
-
-    useEffect(()=>{
-         if (grid === position){
-             setIconColor({color: '#000000'});
-             //setIconDraw(<MinusOutlined/>);
-         } else if (grid > position){
-             setIconColor({color: '#51ff00'});
-             //setIconDraw(<ArrowDownOutlined/>);
-         } else {
-             setIconColor({color: '#ff0000'});
-             //setIconDraw(<ArrowUpOutlined/>);
-         }
-        },[]
-    ); // eslint-disable-line react-hooks/exhaustive-deps
-    return (
-            
-        <Statistic
-            title=""
-            precision={0}
-            value={Math.abs(grid-position)}
-            valueStyle={iconColor}
-            prefix={<MinusOutlined/>}
-        />
-
-    )
-}
-export default GridProgression
+const GridProgression = ({
+  grid,
+  position,
+}: {
+  grid: number;
+  position: number;
+}) => {
+  let iconColor = { color: "#000000" };
+  let iconDraw = <MinusOutlined />;
+  if (grid > position) {
+    iconColor = { color: "#51ff00" };
+    iconDraw = <ArrowDownOutlined />;
+  } else {
+    iconColor = { color: "#ff0000" };
+    iconDraw = <ArrowUpOutlined />;
+  }
+  return (
+    <Statistic
+      title=""
+      precision={0}
+      value={Math.abs(grid - position)}
+      valueStyle={iconColor}
+      prefix={iconDraw}
+    />
+  );
+};
+export default GridProgression;

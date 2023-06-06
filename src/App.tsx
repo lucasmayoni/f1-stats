@@ -1,12 +1,11 @@
-import { Layout, Menu } from "antd";
+import { Layout } from "antd";
 import { dataProvider } from "./rest-data-provider";
 import { Refine } from "@refinedev/core";
 import { axiosInstance } from "./rest-data-provider/utils";
 import { Routes, Route, BrowserRouter, Link } from "react-router-dom";
-import { CircuitShow } from "./components/show";
 import { FormSelector } from "./components/formSelector";
 import RaceShow from "./components/races/raceShow";
-import GridProgression from "./components/gridProgression";
+import DriverShow from "./components/drivers/driverShow";
 
 const { Content, Sider } = Layout;
 
@@ -33,26 +32,27 @@ function App() {
                 dataProvider={dataProvider(apiUrl, axiosInstance)}
                 resources={[
                   {
-                    name: "circuits",
-                    list: "/circuits",
-                    show: "/circuits/show/:id",
+                    name: "races",
+                    show: "/races/show/:id",
                   },
                   {
-                    name:"races",
-                    show: "/races/show/:id"
-                  }
+                    name: "drivers",
+                    show: "/drivers/show/:id",
+                  },
                 ]}
                 options={{
                   syncWithLocation: true,
                   warnWhenUnsavedChanges: true,
                 }}
               >
-                
                 <Routes>
                   <Route path="/races">
                     <Route path="show/:id" element={<RaceShow />} />
                   </Route>
-                  <Route path="/" element={<FormSelector />}/>
+                  <Route path="/drivers">
+                    <Route path="show/:id" element={<DriverShow />} />
+                  </Route>
+                  <Route path="/" element={<FormSelector />} />
                 </Routes>
               </Refine>
             </Content>
