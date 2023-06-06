@@ -1,3 +1,21 @@
+export interface ITeam {
+  id: number;
+  name: string;
+  logo: string;
+  base: string;
+  world_championships: number;
+  pole_positions: number;
+  fastest_laps: number;
+  director: string;
+  technical_manager: string;
+  chassis: string;
+  engine: string;
+  tyres: string;
+}
+export interface ITeamList {
+  response: ITeam[];
+}
+
 export interface IDriver {
   id: number;
   name: string;

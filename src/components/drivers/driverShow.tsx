@@ -1,10 +1,8 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
 import { useCustom } from "@refinedev/core";
 import { Link, useParams } from "react-router-dom";
-import { IDriver, IDriverList } from "../../models/interfaces";
-import { Alert, Badge, Descriptions, Image } from "antd";
-import { useState } from "react";
-import DescriptionsItem from "antd/lib/descriptions/Item";
+import { IDriverList } from "../../models/interfaces";
+import { Descriptions, Image } from "antd";
 import { InfoCircleOutlined } from "@ant-design/icons";
 
 function generateUrl(url: string): string {

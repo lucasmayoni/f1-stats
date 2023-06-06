@@ -2,10 +2,11 @@ import { Layout } from "antd";
 import { dataProvider } from "./rest-data-provider";
 import { Refine } from "@refinedev/core";
 import { axiosInstance } from "./rest-data-provider/utils";
-import { Routes, Route, BrowserRouter, Link } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { FormSelector } from "./components/formSelector";
 import RaceShow from "./components/races/raceShow";
 import DriverShow from "./components/drivers/driverShow";
+import TeamShow from "./components/teams/show";
 
 const { Content, Sider } = Layout;
 
@@ -39,6 +40,10 @@ function App() {
                     name: "drivers",
                     show: "/drivers/show/:id",
                   },
+                  {
+                    name: "teams",
+                    show: "/teams/show/:id",
+                  },
                 ]}
                 options={{
                   syncWithLocation: true,
@@ -51,6 +56,9 @@ function App() {
                   </Route>
                   <Route path="/drivers">
                     <Route path="show/:id" element={<DriverShow />} />
+                  </Route>
+                  <Route path="/teams">
+                    <Route path="show/:id" element={<TeamShow />} />
                   </Route>
                   <Route path="/" element={<FormSelector />} />
                 </Routes>
